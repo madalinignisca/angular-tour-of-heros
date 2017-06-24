@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Hero } from './hero';
 
 const HEROES: Hero[] = [
     { id: 11, name: 'Mr. Nice' },
@@ -25,14 +26,7 @@ const HEROES: Hero[] = [
               <span class="badge">{{hero.id}}</span> {{hero.name}}
           </li>
       </ul>
-      <div *ngIf="selectedHero">
-          <h2>{{ selectedHero.name }} details</h2>
-          <div><label>id: </label>{{selectedHero.id}}</div>
-          <div>
-              <label for="name">name: </label>
-              <input type="text" [(ngModel)]="selectedHero.name" placeholder="name">
-          </div>          
-      </div>
+      <hero-details [hero]="selectedHero"></hero-details>
     `,
     styles: [`
         .selected {
@@ -91,9 +85,4 @@ export class AppComponent  {
     onSelect(hero: Hero): void {
         this.selectedHero = hero;
     }
-}
-
-export class Hero {
-  id: number;
-  name: string;
 }
